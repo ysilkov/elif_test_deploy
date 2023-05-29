@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -63,6 +63,7 @@ export default function ShoppingCart() {
   }, []);
   const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    const token = await recaptchaRef.current?.executeAsync();
     const itemsWithCount =
       cartItems?.map((item) => ({
         ...item,
@@ -71,8 +72,6 @@ export default function ShoppingCart() {
         phone: formData.phone,
         address: formData.address,
       })) || [];
-
-    const token = await recaptchaRef.current?.executeAsync();
 
     if (token) {
       createOrder(itemsWithCount);
@@ -176,22 +175,22 @@ export default function ShoppingCart() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-end ml-auto mr-1 mt-4">
+      <div className="flex flex-col justify-end items-end ml-auto mr-1 mt-4">
         <p className="mr-32">
           Total price:{" "}
           {cartItems?.reduce((acc, item) => acc + item.price * item.count, 0)} $
         </p>
-        <form className="block">
+        <form className="block mt-2">
           <ReCAPTCHA
             ref={recaptchaRef}
             sitekey="6Lf1OksmAAAAAGklw79RH8y_khOFgX9kx5iGFDyo"
-            size="invisible"
+            size="normal"
           />
         </form>
         <button
           className={
             !isFormComplete
-              ? "border border-x-2 border-black rounded-xl py-1 px-8 bg-gray-300 cursor-not-allowed"
+              ? "border border-x-2 border-black rounded-xl py-1 bg-gray-300 cursor-not-allowed w-28 mt-2"
               : "border border-x-2 border-black rounded-xl py-1 px-8 bg-blue-500"
           }
           onClick={(e) => handleSubmit(e)}
