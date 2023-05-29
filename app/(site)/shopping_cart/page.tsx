@@ -82,6 +82,7 @@ export default function ShoppingCart() {
         address: "",
       });
       localStorage.removeItem("cartItems");
+      localStorage.removeItem("page");
       router.push("/");
     }
   };
