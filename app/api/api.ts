@@ -28,7 +28,7 @@ interface Data {
 export const getBurgers = async (country: string) => {
   try {
     const response = await axios.post(
-      "https://burger-739eac4cfb3f.herokuapp.com/api/burgersCountry",
+      "https://sparkling-churros-ba00c1.netlify.app/api/burgersCountry",
       {
         country: country,
       }
@@ -41,7 +41,7 @@ export const getBurgers = async (country: string) => {
 export const getArchive = async (email: string, phone: string) => {
   try {
     const response = await axios.post(
-      `https://burger-739eac4cfb3f.herokuapp.com/api/archiveOrder`, {
+      `https://sparkling-churros-ba00c1.netlify.app/api/archiveOrder`, {
         email: email,
         phone: phone,
       }
@@ -54,7 +54,7 @@ export const getArchive = async (email: string, phone: string) => {
 
 export const createOrder = async (itemsWithCount: Data[]) => {
   try {
-    const response = await axios.post("https://burger-739eac4cfb3f.herokuapp.com/api/createOrder", {
+    const response = await axios.post("https://sparkling-churros-ba00c1.netlify.app/api/createOrder", {
       data: itemsWithCount,
     });
     return response.data;
