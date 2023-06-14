@@ -28,7 +28,7 @@ interface Data {
 export const getBurgers = async (country: string) => {
   try {
     const response = await axios.post(
-      "https://statuesque-rolypoly-a421cc.netlify.app/api/burgersCountry",
+      "https://still-temple-53038.herokuapp.com/api/burgersCountry",
       {
         country: country,
       }
@@ -41,7 +41,7 @@ export const getBurgers = async (country: string) => {
 export const getArchive = async (email: string, phone: string) => {
   try {
     const response = await axios.post(
-      `https://statuesque-rolypoly-a421cc.netlify.app/api/archiveOrder`, {
+      `https://still-temple-53038.herokuapp.com/api/archiveOrder`, {
         email: email,
         phone: phone,
       }
@@ -54,7 +54,7 @@ export const getArchive = async (email: string, phone: string) => {
 
 export const createOrder = async (itemsWithCount: Data[]) => {
   try {
-    const response = await axios.post("https://statuesque-rolypoly-a421cc.netlify.app/api/createOrder", {
+    const response = await axios.post("https://still-temple-53038.herokuapp.com/api/createOrder", {
       data: itemsWithCount,
     });
     return response.data;
